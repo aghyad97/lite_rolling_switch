@@ -29,6 +29,10 @@ class LiteRollingSwitch extends StatefulWidget {
   final String textOn;
   final Color colorOn;
   final Color colorOff;
+  final Color colorOnText;
+  final Color colorOffText;
+  final Color backgroundColor;
+  final Color iconColor;
   final double textSize;
   final Duration animationDuration;
   final IconData iconOn;
@@ -50,7 +54,11 @@ class LiteRollingSwitch extends StatefulWidget {
       this.onTap,
       this.onDoubleTap,
       this.onSwipe,
-      this.onChanged});
+      this.onChanged,
+      this.colorOnText,
+      this.colorOffText,
+      this.backgroundColor,
+      this.iconColor});
 
   @override
   _RollingSwitchState createState() => _RollingSwitchState();
@@ -111,7 +119,8 @@ class _RollingSwitchState extends State<LiteRollingSwitch>
         padding: EdgeInsets.all(5),
         width: 130,
         decoration: BoxDecoration(
-            color: transitionColor, borderRadius: BorderRadius.circular(50)),
+            color: widget.backgroundColor,
+            borderRadius: BorderRadius.circular(50)),
         child: Stack(
           children: <Widget>[
             Transform.translate(
@@ -125,7 +134,7 @@ class _RollingSwitchState extends State<LiteRollingSwitch>
                   child: Text(
                     widget.textOff,
                     style: TextStyle(
-                        color: Colors.white,
+                        color: widget.colorOffText,
                         fontWeight: FontWeight.bold,
                         fontSize: widget.textSize),
                   ),
@@ -143,7 +152,7 @@ class _RollingSwitchState extends State<LiteRollingSwitch>
                   child: Text(
                     widget.textOn,
                     style: TextStyle(
-                        color: Colors.white,
+                        color: widget.colorOnText,
                         fontWeight: FontWeight.bold,
                         fontSize: widget.textSize),
                   ),
@@ -159,7 +168,7 @@ class _RollingSwitchState extends State<LiteRollingSwitch>
                   width: 40,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.white),
+                      shape: BoxShape.circle, color: widget.iconColor),
                   child: Stack(
                     children: <Widget>[
                       Center(
